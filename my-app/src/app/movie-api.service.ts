@@ -9,8 +9,8 @@ export class MovieApiService {
   constructor(private http: HttpClient) { }
 
   getMovieDetails(movieId: number) {
-    const apiKey = ' 0faa87df83a002d1bec6d1cfc722c670';
-    const url = 'https://api.themoviedb.org/3/movie';
+    const apiKey = '0c4bcaa4795cb3ebcd4eca9cd315e08d';
+    const url = 'https://api.themoviedb.org/3/tv/popular';
     return this.http.get(url);
   }
 }

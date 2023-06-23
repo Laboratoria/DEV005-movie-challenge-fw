@@ -4,7 +4,6 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { LoginComponent } from './modules/login/login.component';
 import { MovieComponent } from './modules/movie/movie.component';
 import { MovieDetailComponent } from './modules/movie/movie-detail/movie-detail.component';
 import { MovieApiServiceComponent } from './modules/app/movie-api.service/movie-api.service.component';
@@ -12,15 +11,15 @@ import { MovieApiServiceComponent } from './modules/app/movie-api.service/movie-
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent,
     MovieComponent,
     MovieDetailComponent,
-    MovieApiServiceComponent
+    MovieApiServiceComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    
   ],
   providers: [],
   bootstrap: [AppComponent]
