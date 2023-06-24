@@ -1,4 +1,36 @@
-<p>movie-detail works! miercoles</p>
-<section class ="d-flex align-item-center justify-content-center ">
-<input type="text" placeholder="Buscar Pelicula...." >
+<button type="button" id="btnInicio">Inicio</button>
+<section class="containerPrincipal">
+  <div class="selectors">
+    <select id="genero">
+      <option disabled selected hidden>Genero</option>
+      <option value="accion">Acción</option>
+      <option value="comedia">Comedia</option>
+      <option value="drama">Drama</option>
+      <option value="animadas">Animadas</option>
+      <option value="fantasia">Fantasia</option>
+      <option value="horror">Horror</option>
+      <option value="romance">Romance</option>
+      <option value="animacion">Animacion</option>
+      <option value="misterio">Misterio</option>
+    </select>
+    <select id="populares">
+      <option disabled selected hidden>Populares</option>
+      <option value="semana">Esta semana</option>
+      <option value="mes">Este mes</option>
+      <option value="todos">Todos los tiempos</option>
+    </select>
+  </div>
 </section>
+
+<div class="input-container">
+  <input type="text" name="movieTitle" class="form-control" autofocus placeholder="Buscar Película..." [(ngModel)]="movieTitle" (input)="buscarPeliculas()">
+</div>
+
+<div class="container">
+  <div class="row">
+    <div *ngFor="let movie of filteredMovies" class="col-md-4">
+      <img [src]="'https://image.tmdb.org/t/p/w500' + movie.poster_path" alt="Portada de la película" class="img-fluid movie-poster">
+      <p>{{ movie.title }}</p>
+    </div>
+  </div>
+</div>

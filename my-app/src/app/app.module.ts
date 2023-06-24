@@ -6,22 +6,21 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MovieComponent } from './modules/movie/movie.component';
 import { MovieDetailComponent } from './modules/movie/movie-detail/movie-detail.component';
-import { MovieApiServiceComponent } from './modules/app/movie-api.service/movie-api.service.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     AppComponent,
     MovieComponent,
     MovieDetailComponent,
-    MovieApiServiceComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

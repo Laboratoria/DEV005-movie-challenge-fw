@@ -1,0 +1,67 @@
+.containerPrincipal {
+    background-color: rgb(8, 22, 36);
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+  }
+  
+  .selectors {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
+  
+  .selectors select {
+    margin-left: 10px;
+    appearance: none;
+    background-color: transparent;
+    border: none;
+    font-size: 18px;
+    font-family: inherit;
+    color: rgb(3, 2, 2);
+    font-weight: bold;
+    cursor: pointer;
+  }
+  
+  #genero,
+  #populares {
+    color: white;
+  }
+  
+  .selectors select:focus {
+    outline: none;
+  }
+
+  #btnInicio {
+    margin: 20px;
+    position: absolute;
+    margin-top: 10px;
+    background-color: transparent;
+    font-family: inherit;
+    font-size: 18px;
+    font-weight: bold;
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+  }
+
+  .input-container {
+    margin: 10px;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .input-container input {
+    width: 30%; 
+  }
+
+  .form-control {
+    border: 1px solid black;
+  }
+
+  .movie-poster {
+    margin: 10px;
+    border-radius: 10px;
+  }
+  
