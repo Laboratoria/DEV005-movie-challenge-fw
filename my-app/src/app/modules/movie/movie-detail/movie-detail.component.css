@@ -18,14 +18,15 @@
     border: none;
     font-size: 18px;
     font-family: inherit;
-    color: rgb(3, 2, 2);
+    color: white;
     font-weight: bold;
     cursor: pointer;
   }
   
-  #genero,
-  #populares {
-    color: white;
+  select option {
+    color: black;
+    background-color: white;
+    text-align: center;
   }
   
   .selectors select:focus {
@@ -33,7 +34,7 @@
   }
 
   #btnInicio {
-    margin: 20px;
+    margin: 30px;
     position: absolute;
     margin-top: 10px;
     background-color: transparent;
@@ -54,14 +55,30 @@
   
   .input-container input {
     width: 30%; 
+    margin: 18px;
   }
 
   .form-control {
-    border: 1px solid black;
+    border: 1px solid rgb(8, 22, 36);
+  }
+
+  #title{
+    padding: 6px;
+    font-size: 100% ;
+    font-weight: bold;
+    text-align: center;
   }
 
   .movie-poster {
-    margin: 10px;
-    border-radius: 10px;
+    margin: 0px;
+    border-radius: 20px;
   }
+
+  .movieCard{
+    border: 1px solid rgb(8, 22, 36);
+    border-radius: 20px;
+    padding: 0px;
+    margin-bottom: 30px;
+  }
+
   
