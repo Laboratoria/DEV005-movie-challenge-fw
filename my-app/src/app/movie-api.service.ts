@@ -20,7 +20,6 @@ export class MovieApiService {
     // Añade los parámetros de consulta para obtener todas las películas
     const params = new HttpParams()
       .set('language', 'es') // Establece el idioma a español
-      //.set('sort_by', 'popularity.desc'); // Ordena por popularidad descendente, puedes ajustar los criterios según tus necesidades
   
     return this.http.get<any>(this.url, { headers, params });
   }

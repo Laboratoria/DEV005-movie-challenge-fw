@@ -32,6 +32,7 @@
   .selectors select:focus {
     outline: none;
   }
+  
 
   #btnInicio {
     margin: 30px;
