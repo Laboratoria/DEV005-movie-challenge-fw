@@ -7,12 +7,14 @@ import { AppComponent } from './app.component';
 import { MovieComponent } from './modules/movie/movie.component';
 import { MovieDetailComponent } from './modules/movie/movie-detail/movie-detail.component';
 import { FormsModule } from '@angular/forms';
+import { OrderByPipe } from './pipe/order-by.pipe'; 
 
 @NgModule({
   declarations: [
     AppComponent,
     MovieComponent,
     MovieDetailComponent,
+    OrderByPipe
   ],
   imports: [
     BrowserModule,
