@@ -1,5 +1,5 @@
-<button type="button" id="btnInicio">Inicio</button>
-<section class="containerPrincipal">
+<button type="button" id="btnInicio" (click)="home()">Inicio</button>
+<section class="containerPrincipal" >
   <div class="selectors">
     <select  id="Order" [(ngModel)]="orderBy" (change)="orderMovies()">
         <option disabled selected hidden>Ordenar</option>
@@ -25,19 +25,49 @@
   </div>
 </section>
 
-<div class="input-container">
-  <input type="text" name="movieTitle" class="form-control" autofocus placeholder="Buscar Película..." [(ngModel)]="movieTitle" (input)="buscarPeliculas()">
+<div class="input-container" [ngClass]="{ 'hide-search': selectedMovie !== null }">
+  <div class="searchContainer">
+    <input type="text" name="movieTitle" class="form-control" autofocus placeholder="Buscar Película..." [(ngModel)]="movieTitle" (input)="buscarPeliculas()">
+  </div>
 </div>
 
-<div class="container">
+
+<div class="container" *ngIf="selectedMovie === null">
   <div class="row">
-    <div *ngFor="let movie of filteredMovies"  class="col-xs-12 col-sm-4 col-md-3 ">
-      <div class="movieCard">
+    <div *ngFor="let movie of filteredMovies; let i = index"  class="col-xs-12 col-sm-4 col-md-3 ">
+      <div class="movieCard" (click)="movieIndex(i)" [class.active] ="selectedMovie === i">
       <img [src]="'https://image.tmdb.org/t/p/w500' + movie.poster_path" alt="Portada de la película" class="img-fluid movie-poster">
-      <p id="title">{{ movie.title }}</p>
-      <p id="title">{{ getGenreName(movie.genre_ids[0]) }}</p>
-      <p id="title">{{ movie.popularity}}</p>
+      <p id="title" [hidden]="selectedMovie !== i">{{ movie.title }}</p>
+      <p id="title">{{ movie.title}}
+        <br>
+        <br>
+      <strong>{{ movie.vote_average }} &nbsp;&nbsp;|&nbsp;&nbsp; {{ getGenreName(movie.genre_ids[0]) }}</strong></p>
+
     </div>
     </div>
   </div>
-</div>
+</div>  
+
+
+<section class="movieDetail" *ngIf="selectedMovie !== null">
+  <div class="movieContent">
+    <div class="imgPortada"><img [src]="moviePoster" alt="Portada de película" *ngIf="selectedMovie !== null" class="imgPortada img-fluid selected-movie-poster"></div>
+    <div class="movieInfo">
+      <div class="title">{{ selectedMovie !== null ? filteredMovies[selectedMovie]?.title : '' }}</div>
+      <div class="votos"> <strong>{{ selectedMovie !== null ? filteredMovies[selectedMovie]?.vote_average : '' }}</strong>
+        <br>
+        {{ selectedMovie !== null ? filteredMovies[selectedMovie]?.vote_count : '' }} votos
+      </div>
+      <div class="genero"><p><strong>Genero: </strong>{{ selectedMovie !== null ? getGenreName(filteredMovies[selectedMovie]?.genre_ids[0]) : '' }}
+        <br>
+        <strong>Estreno: </strong>{{ selectedMovie !== null ? filteredMovies[selectedMovie]?.release_date : '' }}
+        <br>
+        <strong>Titulo original: </strong>{{ selectedMovie !== null ? filteredMovies[selectedMovie]?.original_title : '' }}
+        <br>
+        <strong>Idioma original: </strong>{{ selectedMovie !== null ? filteredMovies[selectedMovie]?.original_language : '' }}</p>
+      </div>
+      <div class="sinopsis"><strong>Sinopsis: </strong>{{ selectedMovie !== null ? filteredMovies[selectedMovie]?.overview : '' }}</div>
+    </div>
+  </div>
+</section>
+

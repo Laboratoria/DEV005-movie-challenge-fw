@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MovieApiService } from 'src/app/movie-api.service';
 import { genres } from 'src/app/genres';
+import { Router } from '@angular/router';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-movie-detail',
@@ -16,9 +18,12 @@ export class MovieDetailComponent implements OnInit {
   selectedPopularity: string = '';
   genreMap: any = genres;
   topMovies: any[] = [];
-
+  selectedMovie: number | null = null;
+  moviePoster: string | null = null;
+  selectedMovieIndex: number | null = null;
   
-  constructor(private movieApiService: MovieApiService) {}
+
+  constructor(private movieApiService: MovieApiService, private router: Router, private location: Location) {}
 
   ngOnInit(): void {
     this.llenarData();
@@ -28,7 +33,7 @@ export class MovieDetailComponent implements OnInit {
     this.movieApiService.getMovieDetails().subscribe(
       (data: any) => {
         this.movies = data.results;
-        this.filteredMovies = this.movies;
+        this.filteredMovies = [...this.movies];
         this.orderMovies();
         this.getTopMovies();
         console.log(data.results);
@@ -38,8 +43,6 @@ export class MovieDetailComponent implements OnInit {
       }
     );
   }
-
-  
 
   orderMovies() {
     if (this.orderBy === 'asc') {
@@ -55,15 +58,10 @@ export class MovieDetailComponent implements OnInit {
 
   movieGenero() {
     if (this.selectedGenre) {
-     const x = this.movies.filter((movie: any) =>
-        //console.log(movie.title, movie.genre_ids, Number(this.selectedGenre), movie.genre_ids.includes(Number(this.selectedGenre)))
-
+      const x = this.movies.filter((movie: any) =>
         movie.genre_ids.includes(Number(this.selectedGenre))
-        //return true
-      
-        
       );
-      console.log(x)
+      console.log(x);
       this.filteredMovies = x;
     } else {
       this.filteredMovies = this.movies;
@@ -72,26 +70,26 @@ export class MovieDetailComponent implements OnInit {
     this.orderMovies();
   }
 
-moviePopularity() {
-  if (this.selectedPopularity === 'semana') {
-    this.filteredMovies = this.movies.filter((movie: any) =>
-      movie.popularity >= 1200.000
-    )
-  } else if (this.selectedPopularity === 'mes') {
-    this.filteredMovies = this.movies.filter((movie: any) =>
-      movie.popularity >= 1200.000
-    ).slice(0, 5);
+  moviePopularity() {
+    if (this.selectedPopularity === 'semana') {
+      this.filteredMovies = this.movies.filter(
+        (movie: any) => movie.popularity >= 1200.0
+      );
+    } else if (this.selectedPopularity === 'mes') {
+      this.filteredMovies = this.movies
+        .filter((movie: any) => movie.popularity >= 1200.0)
+        .slice(0, 5);
+    }
+    this.orderMovies();
+    console.log('Películas filtradas por popularidad:', this.filteredMovies);
   }
-  this.orderMovies();
-  console.log('Películas filtradas por popularidad:', this.filteredMovies);
-}
 
-getTopMovies() {
-  this.filteredMovies = this.movies.slice(0, 5);
-}
+  getTopMovies() {
+    this.filteredMovies = this.movies;
+  }
 
   buscarPeliculas() {
-    const searchTerm = this.movieTitle.toLocaleLowerCase();
+    const searchTerm = this.movieTitle.toLowerCase();
     this.filteredMovies = this.movies.filter((movie: any) =>
       movie.title.toLowerCase().includes(searchTerm)
     );
@@ -101,4 +99,26 @@ getTopMovies() {
     const genre = this.genreMap.find((g: any) => g.id === genreId);
     return genre ? genre.name : '';
   }
+
+  movieIndex(index: number) {
+    if (this.selectedMovie === index) {
+      this.selectedMovie = null;
+      this.selectedMovieIndex = null;
+      this.moviePoster = null;
+    } else {
+      this.selectedMovie = index;
+      this.selectedMovieIndex = index;
+      this.moviePoster =
+        'https://image.tmdb.org/t/p/w500' +
+        this.filteredMovies[index].poster_path;
+    }
+  }
+  
+  home() {
+    this.selectedMovie = null;
+    this.selectedMovieIndex = null;
+    this.moviePoster = null;
+    this.filteredMovies = [...this.movies];
+    this.orderMovies();
+  }  
 }
