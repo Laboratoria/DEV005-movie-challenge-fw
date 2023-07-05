@@ -1,11 +1,12 @@
 <button type="button" id="btnInicio" (click)="home()">Inicio</button>
 <section class="containerPrincipal" >
   <div class="selectors">
-    <select  id="Order" [(ngModel)]="orderBy" (change)="orderMovies()">
-        <option disabled selected hidden>Ordenar</option>
-        <option value="asc">Ascendente</option>
-        <option value="desc">Descendente</option>
+    <select id="Order" [(ngModel)]="orderBy" (change)="orderMovies()" class="custom-select">
+      <option disabled selected hidden>Ordenar</option>
+      <option value="asc">Ascendente</option>
+      <option value="desc">Descendente</option>
     </select>
+    
     <select id="genero" [(ngModel)]="selectedGenre" (change)="movieGenero()">
       <option disabled selected hidden>Genero</option>
       <option value=28>Acción</option>
@@ -41,8 +42,9 @@
       <p id="title">{{ movie.title}}
         <br>
         <br>
-      <strong>{{ movie.vote_average }} &nbsp;&nbsp;|&nbsp;&nbsp; {{ getGenreName(movie.genre_ids[0]) }}</strong></p>
-
+        <p id="title">
+         <strong> <i class="fas fa-star"></i> {{ movie.vote_average }} &nbsp;|&nbsp; {{ getGenreName(movie.genre_ids[0]) }}</strong>
+        </p>
     </div>
     </div>
   </div>
@@ -54,7 +56,7 @@
     <div class="imgPortada"><img [src]="moviePoster" alt="Portada de película" *ngIf="selectedMovie !== null" class="imgPortada img-fluid selected-movie-poster"></div>
     <div class="movieInfo">
       <div class="title">{{ selectedMovie !== null ? filteredMovies[selectedMovie]?.title : '' }}</div>
-      <div class="votos"> <strong>{{ selectedMovie !== null ? filteredMovies[selectedMovie]?.vote_average : '' }}</strong>
+      <div class="votos"> <strong>&nbsp;&nbsp;<i class="fas fa-star star-icon"></i>&nbsp;&nbsp;{{ selectedMovie !== null ? filteredMovies[selectedMovie]?.vote_average : '' }}</strong>
         <br>
         {{ selectedMovie !== null ? filteredMovies[selectedMovie]?.vote_count : '' }} votos
       </div>

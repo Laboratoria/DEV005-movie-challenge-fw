@@ -1,3 +1,5 @@
+@import '~@fortawesome/fontawesome-free/css/all.css';
+
 .containerPrincipal {
     background-color: rgb(8, 22, 36);
     width: 100%;
@@ -13,7 +15,6 @@
   
   .selectors select {
     margin-left: 10px;
-    appearance: none;
     background-color: transparent;
     border: none;
     font-size: 18px;
@@ -32,7 +33,6 @@
   .selectors select:focus {
     outline: none;
   }
-  
 
   #btnInicio {
     margin: 30px;
@@ -140,6 +140,10 @@
     margin-bottom: 10px;
     margin-top: -33px;
     margin-left: 78%;
+  }
+
+  .star-icon {
+    color: rgb(255, 225, 0);;
   }
   
   .genero {

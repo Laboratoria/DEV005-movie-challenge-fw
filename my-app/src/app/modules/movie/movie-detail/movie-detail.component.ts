@@ -73,11 +73,11 @@ export class MovieDetailComponent implements OnInit {
   moviePopularity() {
     if (this.selectedPopularity === 'semana') {
       this.filteredMovies = this.movies.filter(
-        (movie: any) => movie.popularity >= 1200.0
+        (movie: any) => movie.vote_average >= 7.5
       );
     } else if (this.selectedPopularity === 'mes') {
       this.filteredMovies = this.movies
-        .filter((movie: any) => movie.popularity >= 1200.0)
+        .filter((movie: any) => movie.vote_average >= 7.5)
         .slice(0, 5);
     }
     this.orderMovies();
