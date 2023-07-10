@@ -6,10 +6,8 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { MovieComponent } from './modules/movie/movie.component';
-import { MovieDetailComponent } from './modules/movie/movie-detail/movie-detail.component';
 import { OrderByPipe } from './pipe/order-by.pipe';
-import { DetailComponent } from './modules/detail/detail.component';
+import { MovieComponent } from './movie/movie.component';
 
 const routes: Routes = [
   { path: '', component: MovieComponent },
@@ -20,9 +18,7 @@ const routes: Routes = [
   declarations: [
     AppComponent,
     MovieComponent,
-    MovieDetailComponent,
     OrderByPipe,
-    DetailComponent
   ],
   imports: [
     BrowserModule,

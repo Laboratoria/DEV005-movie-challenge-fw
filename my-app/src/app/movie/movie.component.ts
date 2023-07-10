@@ -5,11 +5,11 @@ import { Router } from '@angular/router';
 import { Location } from '@angular/common';
 
 @Component({
-  selector: 'app-movie-detail',
-  templateUrl: './movie-detail.component.html',
-  styleUrls: ['./movie-detail.component.css']
+  selector: 'app-movie',
+  templateUrl: './movie.component.html',
+  styleUrls: ['./movie.component.css']
 })
-export class MovieDetailComponent implements OnInit {
+export class MovieComponent implements OnInit {
   movies: any[] = [];
   filteredMovies: any[] = [];
   movieTitle: string = '';
@@ -36,7 +36,7 @@ export class MovieDetailComponent implements OnInit {
         this.filteredMovies = [...this.movies];
         this.orderMovies();
         this.getTopMovies();
-        console.log(data.results);
+        //console.log(data.results);
       },
       (error: any) => {
         console.error(error);
@@ -66,7 +66,7 @@ export class MovieDetailComponent implements OnInit {
     } else {
       this.filteredMovies = this.movies;
     }
-    console.log('Películas filtradas por género:', this.filteredMovies);
+    //console.log('Películas filtradas por género:', this.filteredMovies);
     this.orderMovies();
   }
 
@@ -81,7 +81,7 @@ export class MovieDetailComponent implements OnInit {
         .slice(0, 5);
     }
     this.orderMovies();
-    console.log('Películas filtradas por popularidad:', this.filteredMovies);
+    //console.log('Películas filtradas por popularidad:', this.filteredMovies);
   }
 
   getTopMovies() {

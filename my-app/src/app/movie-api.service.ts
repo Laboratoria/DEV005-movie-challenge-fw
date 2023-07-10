@@ -9,8 +9,8 @@ export class MovieApiService {
 
   private apiKey = '0c4bcaa4795cb3ebcd4eca9cd315e08d';
     //private url = 'https://api.themoviedb.org/3/tv/popular';
-    private url = 'https://api.themoviedb.org/3/discover/movie';
-  constructor(private http: HttpClient) { }
+    public url = 'https://api.themoviedb.org/3/discover/movie';
+  constructor(public http: HttpClient) { }
 
   public getMovieDetails(): Observable<any> {
     const headers = new HttpHeaders({
