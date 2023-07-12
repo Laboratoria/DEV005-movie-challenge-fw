@@ -1,0 +1,81 @@
+<div class="containerPrincipal">
+  <button type="button" id="btnInicio" (click)="home()">Inicio</button>
+
+  <div class="selectors">
+    <select id="Order" [(ngModel)]="orderBy" (change)="orderMovies()" class="custom-select" *ngIf="selectedMovie === null">
+      <option disabled selected hidden>Ordenar</option>
+      <option value="asc">Ascendente</option>
+      <option value="desc">Descendente</option>
+    </select>
+  
+    <select id="genero" [(ngModel)]="selectedGenre" (change)="movieGenero()" *ngIf="selectedMovie === null">
+      <option value="" disabled selected hidden>Género</option>
+      <option value="28">Acción</option>
+      <option value="12">Aventura</option>
+      <option value="16">Animación</option>
+      <option value="35">Comedia</option>
+      <option value="80">Crimen</option>
+      <option value="18">Drama</option>
+      <option value="10751">Familia</option>
+      <option value="27">Terror</option>
+      <option value="9648">Misterio</option>
+      <option value="10749">Romance</option>
+      <option value="878">Ciencia ficción</option>
+      <option value="53">Suspenso</option>
+    </select>
+  
+    <select id="populares" [(ngModel)]="selectedPopularity" (change)="moviePopularity()" *ngIf="selectedMovie === null">
+      <option disabled selected hidden>Popularidad</option>
+      <option value="populares">Populares</option>
+      <option value="top5">Top 5</option>
+    </select>
+  </div>
+  
+
+  <div class="input-container" [ngClass]="{ 'hide-search': selectedMovie !== null }">
+    <div class="searchContainer">
+      <input type="text" name="movieTitle" class="form-control" autofocus placeholder="Buscar Película..." [(ngModel)]="movieTitle" (input)="buscarPeliculas()">
+    </div>
+  </div>
+
+  <div class="container" *ngIf="selectedMovie === null">
+    <div class="row">
+      <div *ngFor="let movie of filteredMovies; let i = index" class="col-xs-12 col-sm-4 col-md-3">
+        <div class="movieCard" (click)="movieIndex(i)" [class.active]="selectedMovie === i">
+          <img [src]="'https://image.tmdb.org/t/p/w500' + movie.poster_path" alt="Portada de la película" class="img-fluid movie-poster">
+          <p id="title" [hidden]="selectedMovie !== i">{{ movie.title }}</p>
+          <p id="title">{{ movie.title }}
+            <br>
+            <br>
+            <strong><i class="fas fa-star"></i> {{ movie.vote_average }} &nbsp;|&nbsp; {{ getGenreName(movie.genre_ids[0]) }}</strong>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section class="movieDetail" *ngIf="selectedMovie !== null">
+    <div class="movieContent">
+      <div class="imgPortada"><img [src]="moviePoster" alt="Portada de película" *ngIf="selectedMovie !== null" class="imgPortada img-fluid selected-movie-poster"></div>
+      <div class="movieInfo">
+        <div class="title">{{ selectedMovie !== null ? filteredMovies[selectedMovie]?.title : '' }}</div>
+        <div class="votos"> <strong>&nbsp;&nbsp;<i class="fas fa-star star-icon"></i>&nbsp;&nbsp;{{ selectedMovie !== null ? filteredMovies[selectedMovie]?.vote_average : '' }}</strong>
+          <br>
+          {{ selectedMovie !== null ? filteredMovies[selectedMovie]?.vote_count : '' }} votos
+        </div>
+        <div class="genero">
+          <p>
+            <strong>Género: </strong>{{ selectedMovie !== null ? getGenreName(filteredMovies[selectedMovie]?.genre_ids[0]) : '' }}
+            <br>
+            <strong>Estreno: </strong>{{ selectedMovie !== null ? filteredMovies[selectedMovie]?.release_date : '' }}
+            <br>
+            <strong>Título original: </strong>{{ selectedMovie !== null ? filteredMovies[selectedMovie]?.original_title : '' }}
+            <br>
+            <strong>Idioma original: </strong>{{ selectedMovie !== null ? filteredMovies[selectedMovie]?.original_language : '' }}
+          </p>
+        </div>
+        <div class="sinopsis"><strong>Sinopsis: </strong>{{ selectedMovie !== null ? filteredMovies[selectedMovie]?.overview : '' }}</div>
+      </div>
+    </div>
+  </section>
+</div>
