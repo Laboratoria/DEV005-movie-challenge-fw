@@ -30,7 +30,7 @@ export class MovieComponent implements OnInit {
 
   ngOnInit(): void {
     this.llenarData();
- }
+  }
 
   llenarData() {
     this.movieApiService.getMovieDetails().subscribe(
