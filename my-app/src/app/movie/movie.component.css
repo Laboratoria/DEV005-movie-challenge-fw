@@ -38,6 +38,10 @@ select option {
   outline: none;
 }
 
+.selectors select:hover{
+  background-color: rgba(65, 140, 214, 0.39);
+}
+
 #btnInicio {
   margin: 50px;
   position: absolute;
@@ -56,6 +60,10 @@ select option {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+#btnInicio:hover{
+  background-color: rgba(65, 140, 214, 0.39);
 }
 
 .input-container {
