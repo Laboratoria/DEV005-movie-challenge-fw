@@ -1,149 +1,320 @@
 @import '~@fortawesome/fontawesome-free/css/all.css';
 
 .containerPrincipal {
-    background-color: rgb(8, 22, 36);
-    width: 100%;
-    padding: 20px;
-    box-sizing: border-box;
+  background-color: rgb(8, 22, 36) !important;
+  width: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.selectors {
+  padding: 10px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.selectors select {
+  margin-left: 10px;
+  background-color: rgba(255, 255, 255, 0.233);
+  border: none;
+  font-size: 18px;
+  font-family: inherit;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 10px;
+  width: 120px;
+  height: 30px;
+}
+
+select option {
+  color: black;
+  background-color: white;
+  text-align: center;
+}
+
+.selectors select:focus {
+  outline: none;
+}
+
+#btnInicio {
+  margin: 50px;
+  position: absolute;
+  padding: 10px;
+  background-color: rgba(255, 255, 255, 0.233);
+  width: 90px;
+  height: 30px;
+  margin-top: 10px;
+  font-family: inherit;
+  font-size: 18px;
+  font-weight: bold;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.input-container {
+  margin: 10px;
+  display: flex;
+  justify-content: center;
+}
+
+.searchContainer {
+  width: 50%;
+  margin: 18px;
+  display: flex;
+  justify-content: center;
+  visibility: visible;
+}
+
+.form-control {
+  width: 100%;
+  border: 1px solid rgb(8, 22, 36);
+  box-sizing: border-box;
+  padding: 10px;
+}
+
+.container.hide-search .searchContainer {
+  display: none;
+}
+
+.hide-search {
+  display: none;
+}
+
+#title {
+  padding: 6px;
+  font-size: 1em;
+  text-align: center;
+}
+
+.infoTitle {
+  padding: 6px;
+  font-size: 100%;
+  font-weight: bolder;
+  text-align: center;
+}
+
+.movie-poster {
+  margin: 0px;
+  border-radius: 20px;
+}
+
+.movie-poster:hover {
+  filter: brightness(120%);
+}
+
+.movieCard {
+  border: 1px solid rgb(8, 22, 36);
+  border-radius: 20px;
+  padding: 0px;
+  margin-bottom: 30px;
+  background-color: white;
+}
+
+.movieDetail {
+  display: flex;
+  padding: 20px;
+  border: 2px solid rgb(8, 22, 36);
+  max-width: 90%;
+  margin: 10px auto;
+  border-radius: 10px;
+  background-color: white;
+  margin-top: 70px;
+}
+
+.movieContent {
+  display: flex;
+  align-items: flex-start;
+}
+
+.imgPortada {
+  flex: 0 0 30%;
+}
+
+.movieInfo {
+  flex: 1;
+  margin-left: 20px;
+}
+
+.title {
+  font-weight: bolder;
+  font-size: 1.1em;
+  margin-bottom: 10px;
+}
+
+.votos {
+  font-size: 1em;
+  margin-bottom: 10px;
+  margin-top: -33px;
+  margin-left: 78%;
+
+}
+
+.star-icon {
+  color: rgb(255, 225, 0);
+}
+
+.genero {
+  font-size: 1em;
+  margin-bottom: 10px;
+}
+
+.sinopsis {
+  text-align: justify;
+  font-size: 1em;
+}
+
+/* Estilos para pantallas medianas */
+
+@media screen and (max-width: 701px) {
+  .selectors {
+    padding: 15px;
   }
 
-  .selectors {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-  }
-  
   .selectors select {
-    margin-left: 10px;
-    background-color: transparent;
-    border: none;
-    font-size: 18px;
-    font-family: inherit;
-    color: white;
-    font-weight: bold;
-    cursor: pointer;
-  }
-  
-  select option {
-    color: black;
-    background-color: white;
-    text-align: center;
-  }
-  
-  .selectors select:focus {
-    outline: none;
+    font-size: 16px;
+    width: 130px;
+    height: 35px;
   }
 
   #btnInicio {
-    margin: 30px;
     position: absolute;
-    margin-top: 10px;
-    background-color: transparent;
-    font-family: inherit;
+    margin: 40px;
+    width: 100px;
+    height: 35px;
     font-size: 18px;
-    font-weight: bold;
-    color: white;
-    border: none;
-    padding: 10px;
-    cursor: pointer;
+    margin-top: 15px;
   }
 
-  .input-container {
-    margin: 10px;
-    display: flex;
-    justify-content: center;
-  }
-  
   .searchContainer {
-    width: 50%;
-    margin: 18px;
-    display: flex;
-    justify-content: center;
-    visibility: visible; 
+    width: 70%;
+    margin: 15px;
   }
-  
+
   .form-control {
-    width: 100%;
-    border: 1px solid rgb(8, 22, 36);
-    box-sizing: border-box;
     padding: 10px;
+  }
+}
+
+/* Estilos para pantallas pequeñas */
+
+@media screen and (max-width: 767px) {
+  .selectors {
+    padding: 10px;
+  }
+
+  .selectors select {
+    font-size: 14px;
+    width: 70px;
+    height: 30px;
+  }
+
+  #btnInicio {
+    position: absolute;
+    margin: 30px;
+    width: 80px;
+    height: 30px;
+    font-size: 16px;
+    margin-top: 10px;
+    margin-left: 5px;
+  }
+
+  .searchContainer {
+    width: 80%;
+    margin: 10px;
   }
 
   .container.hide-search .searchContainer {
-    display: none; 
+    display: none;
   }
   
   .hide-search {
     display: none;
   }
-
-  #title{
+  
+  #title {
     padding: 6px;
     font-size: 1em;
     text-align: center;
   }
-
-  .infoTitle{
+  
+  .infoTitle {
     padding: 6px;
-    font-size: 100% ;
+    font-size: 3em;
     font-weight: bolder;
     text-align: center;
   }
-
+  
   .movie-poster {
     margin: 0px;
     border-radius: 20px;
+    text-align: center;
   }
+  
   .movie-poster:hover {
     filter: brightness(120%);
   }
-
-  .movieCard{
+  
+  .movieCard {
     border: 1px solid rgb(8, 22, 36);
     border-radius: 20px;
     padding: 0px;
     margin-bottom: 30px;
+    background-color: white;
   }
-
+  
   .movieDetail {
     display: flex;
     padding: 20px;
-    border: 2px solid  rgb(8, 22, 36);
+    border: 2px solid rgb(8, 22, 36);
     max-width: 90%;
     margin: 10px auto;
     border-radius: 10px;
+    background-color: white;
+    margin-top: 70px;
   }
-  
   
   .movieContent {
     display: flex;
     align-items: flex-start;
+    flex-direction: column;
+    text-align: center;
   }
   
   .imgPortada {
     flex: 0 0 30%;
+    order: 1;
+    margin-bottom: 10px;
   }
   
   .movieInfo {
     flex: 1;
-    margin-left: 20px;
+    order: 2;
+    text-align: center;
   }
   
   .title {
     font-weight: bolder;
     font-size: 1.1em;
     margin-bottom: 10px;
+    text-align: center;
   }
   
   .votos {
-    font-size: 1em;
-    margin-bottom: 10px;
-    margin-top: -33px;
-    margin-left: 78%;
+    justify-content: center;
+    text-align: center;
+    margin-top: 5px;
+    margin-left: 0%;
   }
-
+  
   .star-icon {
-    color: rgb(255, 225, 0);;
+    color: rgb(255, 225, 0);
   }
   
   .genero {
@@ -156,3 +327,7 @@
     font-size: 1em;
   }
   
+}
+
+
+

@@ -17,9 +17,9 @@ export class MovieApiService {
       'Authorization': 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwYzRiY2FhNDc5NWNiM2ViY2Q0ZWNhOWNkMzE1ZTA4ZCIsInN1YiI6IjY0OTIyOWJmYmJlMWRkMDBhZDY5MzUyZCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.whgaFnE7q3QMk--91NxWUsPt1IDpKAwnwEr34tC-9-c'
     });
   
-    // Añade los parámetros de consulta para obtener todas las películas
     const params = new HttpParams()
-      .set('language', 'es') // Establece el idioma a español
+      .set('language', 'es')
+      .set('page', '1'); // Establece la página para obtener todas las películas
   
     return this.http.get<any>(this.url, { headers, params });
   }

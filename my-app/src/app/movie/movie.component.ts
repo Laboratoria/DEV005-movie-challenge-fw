@@ -21,22 +21,26 @@ export class MovieComponent implements OnInit {
   selectedMovie: number | null = null;
   moviePoster: string | null = null;
   selectedMovieIndex: number | null = null;
-  
 
-  constructor(private movieApiService: MovieApiService, private router: Router, private location: Location) {}
+  constructor(
+    private movieApiService: MovieApiService,
+    private router: Router,
+    private location: Location
+  ) {}
 
   ngOnInit(): void {
     this.llenarData();
-  }
+ }
 
   llenarData() {
     this.movieApiService.getMovieDetails().subscribe(
       (data: any) => {
-        this.movies = data.results;
-        this.filteredMovies = [...this.movies];
-        this.orderMovies();
-        this.getTopMovies();
-        //console.log(data.results);
+        if (data?.results) {
+          this.movies = data.results;
+          this.filteredMovies = [...this.movies];
+          this.orderMovies();
+          this.getTopMovies();
+        }
       },
       (error: any) => {
         console.error(error);
@@ -45,47 +49,50 @@ export class MovieComponent implements OnInit {
   }
 
   orderMovies() {
-    if (this.orderBy === 'asc') {
-      this.filteredMovies = this.filteredMovies.sort((a, b) =>
-        a.title.localeCompare(b.title)
-      );
-    } else if (this.orderBy === 'desc') {
-      this.filteredMovies = this.filteredMovies.sort((a, b) =>
-        b.title.localeCompare(a.title)
-      );
+    if (this.filteredMovies && this.filteredMovies.length > 0) {
+      if (this.orderBy === 'asc') {
+        this.filteredMovies = this.filteredMovies.sort((a, b) =>
+          a.title.localeCompare(b.title)
+        );
+      } else if (this.orderBy === 'desc') {
+        this.filteredMovies = this.filteredMovies.sort((a, b) =>
+          b.title.localeCompare(a.title)
+        );
+      }
     }
   }
 
   movieGenero() {
     if (this.selectedGenre) {
-      const x = this.movies.filter((movie: any) =>
+      const filterGenre = this.movies.filter((movie: any) =>
         movie.genre_ids.includes(Number(this.selectedGenre))
       );
-      console.log(x);
-      this.filteredMovies = x;
+      this.filteredMovies = filterGenre;
     } else {
       this.filteredMovies = this.movies;
     }
-    //console.log('Películas filtradas por género:', this.filteredMovies);
     this.orderMovies();
   }
 
   moviePopularity() {
-    if (this.selectedPopularity === 'semana') {
+    if (this.selectedPopularity === 'populares') {
       this.filteredMovies = this.movies.filter(
         (movie: any) => movie.vote_average >= 7.5
       );
-    } else if (this.selectedPopularity === 'mes') {
+    } else if (this.selectedPopularity === 'top5') {
       this.filteredMovies = this.movies
         .filter((movie: any) => movie.vote_average >= 7.5)
         .slice(0, 5);
+    } else {
+      this.filteredMovies = this.movies;
     }
     this.orderMovies();
-    //console.log('Películas filtradas por popularidad:', this.filteredMovies);
   }
 
   getTopMovies() {
-    this.filteredMovies = this.movies;
+    this.topMovies = this.movies
+      .filter((movie: any) => movie.vote_average >= 7.5)
+      .slice(0, 5);
   }
 
   buscarPeliculas() {
@@ -113,12 +120,15 @@ export class MovieComponent implements OnInit {
         this.filteredMovies[index].poster_path;
     }
   }
-  
+
   home() {
     this.selectedMovie = null;
     this.selectedMovieIndex = null;
     this.moviePoster = null;
     this.filteredMovies = [...this.movies];
+    this.orderBy = ''; // Restablecer el valor de orderBy
+    this.selectedGenre = null; // Restablecer el valor de selectedGenre
+    this.selectedPopularity = ''; // Restablecer el valor de selectedPopularity
     this.orderMovies();
-  }  
+  }
 }
