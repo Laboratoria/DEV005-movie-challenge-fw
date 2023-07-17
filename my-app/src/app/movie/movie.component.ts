@@ -3,6 +3,8 @@ import { MovieApiService } from 'src/app/movie-api.service';
 import { genres } from 'src/app/genres';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
+import { Observable, forkJoin } from 'rxjs';
+import { HttpParams } from '@angular/common/http';
 
 @Component({
   selector: 'app-movie',
@@ -21,6 +23,8 @@ export class MovieComponent implements OnInit {
   selectedMovie: number | null = null;
   moviePoster: string | null = null;
   selectedMovieIndex: number | null = null;
+  showOrderOption: boolean = true;
+
 
   constructor(
     private movieApiService: MovieApiService,
@@ -29,19 +33,32 @@ export class MovieComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.orderBy = ''; 
+    this.selectedGenre = null;
+    this.selectedPopularity = '';
     this.llenarData();
   }
 
   llenarData() {
-    this.movieApiService.getMovieDetails().subscribe(
-      (data: any) => {
-        if (data?.results) {
-          this.movies = data.results;
-          this.filteredMovies = [...this.movies];
+    
+      const totalPages = 10;
+      const requests: Observable<any>[] = [];
+
+      for (let page = 1; page <= totalPages; page++){
+        const params = new HttpParams()
+        .set('language' , 'es')
+        .set('page' , page.toString())
+        
+        requests.push(this.movieApiService.getMovieDetails(params));
+      }
+       forkJoin(requests).subscribe(
+        (responses: any[]) => {
+          this.filteredMovies = responses.flatMap((response: any) => response.results);
+          this.movies = [...this.filteredMovies];
           this.orderMovies();
           this.getTopMovies();
-        }
-      },
+          console.log(this.filteredMovies);
+        },
       (error: any) => {
         console.error(error);
       }
@@ -61,6 +78,7 @@ export class MovieComponent implements OnInit {
       }
     }
   }
+  
 
   movieGenero() {
     if (this.selectedGenre) {
@@ -76,17 +94,22 @@ export class MovieComponent implements OnInit {
 
   moviePopularity() {
     if (this.selectedPopularity === 'populares') {
-      this.filteredMovies = this.movies.filter(
-        (movie: any) => movie.vote_average >= 7.5
-      );
-    } else if (this.selectedPopularity === 'top5') {
+      this.filteredMovies = this.movies
+      .filter((movie: any) => movie.vote_average >= 7.5)
+        .sort((a, b) => b.vote_average - a.vote_average)
+        .slice(0, 30);
+    
+    } else if (this.selectedPopularity === 'top10') {
       this.filteredMovies = this.movies
         .filter((movie: any) => movie.vote_average >= 7.5)
-        .slice(0, 5);
+        .sort((a, b) => b.vote_average - a.vote_average)
+        .slice(0, 10);
     } else {
       this.filteredMovies = this.movies;
     }
     this.orderMovies();
+    console.log(this.filteredMovies);
+    
   }
 
   getTopMovies() {
@@ -99,6 +122,7 @@ export class MovieComponent implements OnInit {
     const searchTerm = this.movieTitle.toLowerCase();
     this.filteredMovies = this.movies.filter((movie: any) =>
       movie.title.toLowerCase().includes(searchTerm)
+      
     );
   }
 
