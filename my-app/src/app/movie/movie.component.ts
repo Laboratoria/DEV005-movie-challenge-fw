@@ -5,12 +5,16 @@ import { Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { Observable, forkJoin } from 'rxjs';
 import { HttpParams } from '@angular/common/http';
+import { OrderByPipe } from '../pipe/order-by.pipe';
 
 @Component({
   selector: 'app-movie',
   templateUrl: './movie.component.html',
-  styleUrls: ['./movie.component.css']
+  styleUrls: ['./movie.component.css'],
+  providers: [OrderByPipe], 
 })
+
+
 export class MovieComponent implements OnInit {
   movies: any[] = [];
   filteredMovies: any[] = [];
@@ -38,7 +42,7 @@ export class MovieComponent implements OnInit {
     this.selectedGenre = null;
     this.selectedPopularity = '';
     this.llenarData();
-  }
+  } 
 
   toggleSearchContainer() {
     this.showSearchContainer = !this.showSearchContainer;
@@ -80,17 +84,7 @@ export class MovieComponent implements OnInit {
   }
 
   orderMovies() {
-    if (this.filteredMovies && this.filteredMovies.length > 0) {
-      if (this.orderBy === 'asc') {
-        this.filteredMovies = this.filteredMovies.sort((a, b) =>
-          a.title.localeCompare(b.title)
-        );
-      } else if (this.orderBy === 'desc') {
-        this.filteredMovies = this.filteredMovies.sort((a, b) =>
-          b.title.localeCompare(a.title)
-        );
-      }
-    }
+
   }
   
 
