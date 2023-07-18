@@ -1,41 +1,59 @@
-.containerPrincipal {
-  background-color: rgb(8, 22, 36) !important;
+body {
+  background-color: rgb(8, 22, 36);
+  margin: 0;
+}
+
+.header-container {
   width: 100%;
-  padding: 20px;
-  box-sizing: border-box;
-}
-
-h1{
-position: absolute;
-left: 50%;
-transform: translate(-50%);
-color: white;
-padding: 10px;
-text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.5) ;
-font-size: 3em;
-font-family: inherit;
-}
-
-.selectors {
-  padding: 10px;
+  border: none;
+  border-radius: 10px;
   display: flex;
+  justify-content: space-between; 
+  align-items: center; 
+  padding: 10px; 
   justify-content: flex-end;
-  align-items: center;
+}
+
+.header-content {
+  display: flex;
+  align-items: center; 
+}
+
+h1 {
+  color: white;
+  text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.5);
+  font-size: 2em;
+  margin: 15px;
+  position: absolute;
+}
+
+#btnInicio {
+  font-family: inherit;
+  font-size: 18px;
+  font-weight: bold;
+  color: white;
+  background-color: rgba(0, 0, 0, 0);
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+#btnInicio:hover {
+  background-color: rgba(65, 140, 214, 0.5); 
 }
 
 .selectors select {
-  margin-left: 10px;
-  background-color: rgba(255, 255, 255, 0.233);
+  margin: 10px;
   border: none;
-  font-size: 16px;
+  font-size: 18px;
+  appearance: none;
   font-family: inherit;
   color: white;
   font-weight: bold;
   cursor: pointer;
   border-radius: 10px;
-  width: 150px;
-  height: 30px;
-  margin-top: 50px;
+  background-color: rgba(65, 139, 214, 0);
+
 }
 
 select option {
@@ -46,167 +64,75 @@ select option {
 
 .selectors select:focus,
 .selectors select:hover {
-  outline: none;
-  background-color: rgba(65, 140, 214, 0.39);
+  background-color: rgba(65, 140, 214, 0.5); 
 }
 
-#btnInicio {
-  margin: 30px;
-  position: absolute;
-  padding: 10px;
-  background-color: rgba(255, 255, 255, 0.233);
-  width: 150px;
-  height: 30px;
-  top: 50px;
-  font-family: inherit;
-  font-size: 20px;
-  font-weight: bold;
-  color: white;
-  border: none;
-  border-radius: 10px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-#btnInicio:hover {
-  background-color: rgba(65, 140, 214, 0.39);
-}
-
-.input-container {
-  margin: 10px;
-  display: flex;
-  justify-content: center;
+.search-icon-container {
+  position: relative;
+  margin-right: 10px; /* Espacio entre el icono y el input */
 }
 
 .searchContainer {
-  width: 50%;
-  margin: 18px;
-  display: flex;
-  justify-content: center;
-  visibility: visible;
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  height: 30px;
+  margin-top: -580px;
 }
 
-.form-control {
-  width: 100%;
-  border: 1px solid rgb(8, 22, 36);
-  box-sizing: border-box;
-  padding: 10px;
+.search-icon { 
+  padding: 5px;
+  color: white;
 }
 
-.container.hide-search .searchContainer {
-  display: none;
-}
-
-.hide-search {
-  display: none;
-}
-
-#title {
-  padding: 6px;
-  font-size: 1em;
-  text-align: center;
-}
-
-.infoTitle {
-  padding: 6px;
-  font-size: 100%;
-  font-weight: bolder;
-  text-align: center;
-}
-
-.movie-poster {
-  margin: 0px;
-  border-radius: 20px;
-}
-
-.movie-poster:hover {
-  filter: brightness(120%);
-}
-
-.movieCard {
-  border: 1px solid rgb(8, 22, 36);
-  border-radius: 20px;
-  padding: 0px;
-  margin-bottom: 30px;
-  background-color: white;
-}
-
-.movieDetail {
-  display: flex;
-  padding: 20px;
-  border: 2px solid rgb(8, 22, 36);
-  max-width: 90%;
-  margin: 10px auto;
+.search-icon:hover {
+  background-color: rgba(65, 140, 214, 0.5); 
+  width: 30px;
+  height: 28px;
   border-radius: 10px;
-  background-color: white;
-  margin-top: 70px;
 }
 
-.movieContent {
-  display: flex;
-  align-items: flex-start;
+
+.movieCard{
+  color: rgba(255, 255, 255, 0.781);
+  margin: 15px;
 }
 
-.imgPortada {
-  flex: 0 0 30%;
+.movieInfo{
+  color: rgba(255, 255, 255, 0.781);
 }
 
-.movieInfo {
-  flex: 1;
-  margin-left: 20px;
+.container{
+  margin: 50px;
 }
 
-.title {
-  font-weight: bolder;
-  font-size: 1.1em;
-  margin-bottom: 10px;
-}
-
-.votos {
-  font-size: 0.9em;
-  margin-bottom: 10px;
-  margin-top: -33px;
-  margin-left: 83%;
-}
-
-.star-icon {
-  color: rgb(255, 225, 0);
-}
-
-.genero {
-  font-size: 0.9em;
-  margin-bottom: 10px;
-}
-
-.sinopsis {
-  text-align: justify;
-  font-size: 0.9em;
-}
-
-/* Estilos para pantallas pequeñas */
+/*estilos pantallas pequenas*/
 
 @media screen and (max-width: 767px) {
-   h1{
+  h1 {
     top: 12px;
     font-size: 1.5em;
-   }
-
+  }
 
   .selectors {
     padding: 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
   }
 
   .selectors select {
     font-size: 14px;
-    width: 70px;
+    width: 100px;
     height: 25px;
+    margin: 5px;
   }
 
   #btnInicio {
-    position: absolute;
-    margin: 30px;
+    margin: 10px;
     width: 80px;
     height: 25px;
     font-size: 16px;
@@ -223,34 +149,46 @@ select option {
   .container.hide-search .searchContainer {
     display: none;
   }
-  
+
   .hide-search {
     display: none;
   }
-  
+
+.search-icon {
+  position: absolute;
+  left: 10px;
+  top: 8px;
+  color: white;
+  pointer-events: none;
+}
+.search-icon:hover{
+  background-color: rgba(65, 140, 214, 0.39);
+
+}
+
   #title {
     padding: 6px;
     font-size: 1em;
     text-align: center;
   }
-  
+
   .infoTitle {
     padding: 6px;
     font-size: 3em;
     font-weight: bolder;
     text-align: center;
   }
-  
+
   .movie-poster {
     margin: 0px;
     border-radius: 20px;
     text-align: center;
   }
-  
+
   .movie-poster:hover {
     filter: brightness(120%);
   }
-  
+
   .movieCard {
     border: 1px solid rgb(8, 22, 36);
     border-radius: 20px;
@@ -258,7 +196,7 @@ select option {
     margin-bottom: 30px;
     background-color: white;
   }
-  
+
   .movieDetail {
     display: flex;
     padding: 20px;
@@ -269,49 +207,49 @@ select option {
     background-color: white;
     margin-top: 70px;
   }
-  
+
   .movieContent {
     display: flex;
     align-items: flex-start;
     flex-direction: column;
     text-align: center;
   }
-  
+
   .imgPortada {
     flex: 0 0 30%;
     order: 1;
     margin-bottom: 10px;
   }
-  
+
   .movieInfo {
     flex: 1;
     order: 2;
     text-align: center;
   }
-  
+
   .title {
     font-weight: bolder;
     font-size: 1.1em;
     margin-bottom: 10px;
     text-align: center;
   }
-  
+
   .votos {
     justify-content: center;
     text-align: center;
     margin-top: 5px;
     margin-left: 0%;
   }
-  
+
   .star-icon {
     color: rgb(255, 225, 0);
   }
-  
+
   .genero {
     font-size: 0.9em;
     margin-bottom: 10px;
   }
-  
+
   .sinopsis {
     text-align: justify;
     font-size: 0.9em;

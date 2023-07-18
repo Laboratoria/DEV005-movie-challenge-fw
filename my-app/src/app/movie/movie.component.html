@@ -1,43 +1,44 @@
-<h1>MUNDO PELIS</h1><div class="containerPrincipal">
-  
- <div id="containerSelect">
- <button type="button" id="btnInicio" (click)="home()">Inicio</button>
-
- <div class="selectors">
-  <select id="Order" [(ngModel)]="orderBy" (change)="orderMovies()">
-    <option [ngValue]="''" [hidden]="selectedMovie !== null" disabled selected hidden>Ordenar</option>
-    <option [ngValue]="'asc'">Ascendente</option>
-    <option [ngValue]="'desc'">Descendente</option>
-  </select>
-  
-  <select id="genero" [(ngModel)]="selectedGenre" (change)="movieGenero()">
-      <option [ngValue]="null" [hidden]="selectedMovie !== null" disabled selected hidden>Género</option>
-      <option [ngValue]="'28'">Acción</option>
-      <option [ngValue]="'12'">Aventura</option>
-      <option [ngValue]="'16'">Animación</option>
-      <option [ngValue]="'35'">Comedia</option>
-      <option [ngValue]="'80'">Crimen</option>
-      <option [ngValue]="'18'">Drama</option>
-      <option [ngValue]="'10751'">Familia</option>
-      <option [ngValue]="'27'">Terror</option>
-      <option [ngValue]="'9648'">Misterio</option>
-      <option [ngValue]="'10749'">Romance</option>
-      <option [ngValue]="'878'">Ciencia ficción</option>
-      <option [ngValue]="'53'">Suspenso</option>
-    </select>
-  
-    <select id="populares" [(ngModel)]="selectedPopularity" (change)="moviePopularity()">
-      <option [ngValue]="''" [hidden]="selectedMovie !== null" disabled selected hidden>Popularidad</option>
-      <option [ngValue]="'populares'">Populares</option>
-      <option [ngValue]="'top10'">Top 10</option>
-    </select>
-
+<body>
+  <h1>MUNDO PELIS</h1>
+<div class="header-container">
+  <div class="header-content">
+    <div class="selectors">
+      <button type="button" id="btnInicio" (click)="home()">Inicio</button>
+      <select id="Order" [(ngModel)]="orderBy" (change)="orderMovies()">
+        <option [ngValue]="''" [hidden]="selectedMovie !== null" disabled selected hidden>Ordenar</option>
+        <option [ngValue]="'asc'">Ascendente</option>
+        <option [ngValue]="'desc'">Descendente</option>
+      </select>
+      <select id="genero" [(ngModel)]="selectedGenre" (change)="movieGenero()">
+        <option [ngValue]="null" [hidden]="selectedMovie !== null" disabled selected hidden>Género</option>
+        <option [ngValue]="'28'">Acción</option>
+        <option [ngValue]="'12'">Aventura</option>
+        <option [ngValue]="'16'">Animación</option>
+        <option [ngValue]="'35'">Comedia</option>
+        <option [ngValue]="'80'">Crimen</option>
+        <option [ngValue]="'18'">Drama</option>
+        <option [ngValue]="'10751'">Familia</option>
+        <option [ngValue]="'27'">Terror</option>
+        <option [ngValue]="'9648'">Misterio</option>
+        <option [ngValue]="'10749'">Romance</option>
+        <option [ngValue]="'878'">Ciencia ficción</option>
+        <option [ngValue]="'53'">Suspenso</option>
+      </select>
+      <select id="populares" [(ngModel)]="selectedPopularity" (change)="moviePopularity()">
+        <option [ngValue]="''" [hidden]="selectedMovie !== null" disabled selected hidden>Popularidad</option>
+        <option [ngValue]="'populares'">Populares</option>
+        <option [ngValue]="'top10'">Top 10</option>
+      </select>
+    </div>
+  </div>
   <div class="input-container" [ngClass]="{ 'hide-search': selectedMovie !== null }">
-    <div class="searchContainer">
+    <i class="fas fa-search search-icon" (click)="toggleSearchContainer()"></i>
+    <div class="searchContainer" *ngIf="showSearchContainer">
       <input type="text" name="movieTitle" class="form-control" autofocus placeholder="Buscar Película..." [(ngModel)]="movieTitle" (input)="buscarPeliculas()">
     </div>
   </div>
 </div>
+
   <div class="container" *ngIf="selectedMovie === null">
     <div class="row">
       <div *ngFor="let movie of filteredMovies; let i = index" class="col-xs-12 col-sm-4 col-md-3">
@@ -45,7 +46,6 @@
           <img [src]="'https://image.tmdb.org/t/p/w500' + movie.poster_path" alt="Portada de la película" class="img-fluid movie-poster">
           <p id="title" [hidden]="selectedMovie !== i">{{ movie.title }}</p>
           <p id="title">{{ movie.title }}
-            <br>
             <br>
             <strong><i class="fas fa-star"></i> {{ movie.vote_average }} &nbsp;|&nbsp; {{ getGenreName(movie.genre_ids[0]) }}</strong>
           </p>
@@ -78,4 +78,4 @@
       </div>
     </div>
   </section>
-
+</body>

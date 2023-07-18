@@ -24,6 +24,7 @@ export class MovieComponent implements OnInit {
   moviePoster: string | null = null;
   selectedMovieIndex: number | null = null;
   showOrderOption: boolean = true;
+  showSearchContainer: boolean = false;
 
 
   constructor(
@@ -38,6 +39,19 @@ export class MovieComponent implements OnInit {
     this.selectedPopularity = '';
     this.llenarData();
   }
+
+  toggleSearchContainer() {
+    this.showSearchContainer = !this.showSearchContainer;
+  
+    // Si el contenedor de búsqueda está visible, mueve el focus al campo de búsqueda
+    if (this.showSearchContainer) {
+      const searchInput = document.getElementById('searchInput');
+      if (searchInput) {
+        searchInput.focus();
+      }
+    }
+  }
+  
 
   llenarData() {
     
@@ -144,6 +158,7 @@ export class MovieComponent implements OnInit {
         this.filteredMovies[index].poster_path;
     }
   }
+  
 
   home() {
     this.selectedMovie = null;
