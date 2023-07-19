@@ -3,6 +3,11 @@ body {
   margin: 0;
 }
 
+#imgInicio{
+  position: absolute;
+  z-index: 5;
+}
+
 .header-container {
   width: 100%;
   border: none;
@@ -25,10 +30,9 @@ body {
 h1 {
   color: white;
   text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.5);
-  font-size: 2em;
+  font-size: 2.5em;
   margin: 15px;
-  position: absolute;
-  
+  position: absolute; 
 }
 
 #btnInicio {
@@ -40,6 +44,14 @@ h1 {
   border: none;
   border-radius: 10px;
   cursor: pointer;
+}
+
+.linea-solitaria {
+  position: absolute;
+  width: 75%;
+  height: 2px; /* Ajustar el grosor de la línea */
+  background-color: white; /* Ajustar el color de la línea */
+  margin-top: 40px; /* Ajustar el espacio entre los botones y la línea */
 }
 
 #btnInicio:hover {
@@ -83,8 +95,9 @@ select option {
   transform: translateX(-50%);
   width: 80%;
   height: 30px;
-  margin-top: -580px;
+  margin-top: -10px; /* Modifica este valor según tu preferencia */
 }
+
 
 .search-icon { 
   padding: 5px;
@@ -166,147 +179,123 @@ select option {
 /*estilos pantallas pequenas*/
 
 @media screen and (max-width: 767px) {
+  .header-container {
+    margin-left: 70px;
+  }
+
   h1 {
     top: 12px;
-    font-size: 1.5em;
+    font-size: 1em;
   }
 
   .selectors {
-    padding: 0px;
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-wrap: wrap;
   }
 
   .selectors select {
-    font-size: 14px;
-    width: 100px;
+    font-size: 10px;
+    width: 90px;
     height: 25px;
-    margin: 5px;
+    margin: 5px -20px; 
   }
 
   #btnInicio {
-    margin: 10px;
+    margin: 15px; /* Ajustar los márgenes vertical y horizontal del botón de inicio */
     width: 80px;
     height: 25px;
-    font-size: 16px;
-    margin-top: 20px;
+    font-size: 10px;
     margin-left: 5px;
+    margin-right: -22px;
+  }
+
+  .input-container {
+    display: flex;
+    align-items: center;
+    margin-left: auto; /* Mover el contenedor hacia la derecha */
   }
 
   .searchContainer {
+    position: absolute;
+    text-align: center;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
     width: 80%;
-    height: 30px;
-    margin: 15px;
+    margin-top: -40px; /* Modifica este valor según tu preferencia */
+    margin-left: -70px;
   }
 
-  .container.hide-search .searchContainer {
-    display: none;
+  .search-icon {
+    padding: 5px;
+    color: white;
+    border-radius: 10px;
+    cursor: pointer;
+    position: absolute; /* Agregar posición absoluta para que esté contenido en el contenedor */
+    margin-left: -25%;
+    margin-top: 25px;
+    transform: translateY(-50%); /* Centrar verticalmente el icono */
   }
 
-  .hide-search {
-    display: none;
+  .form-control {
+    width: 100%;
   }
 
-.search-icon {
-  position: absolute;
-  left: 10px;
-  top: 8px;
-  color: white;
-  pointer-events: none;
-}
-.search-icon:hover{
-  background-color: rgba(65, 140, 214, 0.39);
-
-}
-
-  #title {
-    padding: 6px;
-    font-size: 1em;
-    text-align: center;
+  .form-control {
+    width: 100%;
   }
-
-  .infoTitle {
-    padding: 6px;
-    font-size: 3em;
-    font-weight: bolder;
-    text-align: center;
-  }
-
-  .movie-poster {
-    margin: 0px;
-    border-radius: 20px;
-    text-align: center;
-  }
-
-  .movie-poster:hover {
-    filter: brightness(120%);
+  
+  .container{
+    margin-top: -20px;
   }
 
   .movieCard {
     border: 1px solid rgb(8, 22, 36);
     border-radius: 20px;
     padding: 0px;
-    margin-bottom: 30px;
-    background-color: white;
+    width: 50%; /* Ancho para que haya dos elementos en una fila y un espacio de 20px entre ellos */
+    margin-right: 20px; /* Espacio entre las tarjetas */
   }
 
   .movieDetail {
     display: flex;
     padding: 20px;
     border: 2px solid rgb(8, 22, 36);
-    max-width: 90%;
+    max-width: 80%; 
     margin: 10px auto;
     border-radius: 10px;
-    background-color: white;
-    margin-top: 70px;
+    background-color: rgba(255, 255, 255, 0.305);
   }
 
   .movieContent {
     display: flex;
     align-items: flex-start;
+    text-align: justify;
     flex-direction: column;
-    text-align: center;
   }
 
   .imgPortada {
-    flex: 0 0 30%;
     order: 1;
     margin-bottom: 10px;
   }
 
   .movieInfo {
-    flex: 1;
     order: 2;
     text-align: center;
   }
 
-  .title {
-    font-weight: bolder;
-    font-size: 1.1em;
-    margin-bottom: 10px;
-    text-align: center;
-  }
-
   .votos {
-    justify-content: center;
-    text-align: center;
-    margin-top: 5px;
-    margin-left: 0%;
-  }
+    font-size: 1em;
+    position: relative;
+    margin-left: 0px;
+    margin: 10px;
 
-  .star-icon {
-    color: rgb(255, 225, 0);
-  }
-
-  .genero {
-    font-size: 0.9em;
-    margin-bottom: 10px;
   }
 
   .sinopsis {
     text-align: justify;
     font-size: 0.9em;
+    margin-top: -5px;
   }
 }

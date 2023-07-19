@@ -159,9 +159,9 @@ export class MovieComponent implements OnInit {
     this.selectedMovieIndex = null;
     this.moviePoster = null;
     this.filteredMovies = [...this.movies];
-    this.orderBy = ''; // Restablecer el valor de orderBy
-    this.selectedGenre = null; // Restablecer el valor de selectedGenre
-    this.selectedPopularity = ''; // Restablecer el valor de selectedPopularity
+    this.orderBy = '';
+    this.selectedGenre = null;
+    this.selectedPopularity = '';
     this.orderMovies();
   }
 }
