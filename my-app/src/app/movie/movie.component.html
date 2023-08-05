@@ -1,0 +1,84 @@
+<body>
+  <img id="imgInicio" src="../src/img/imagInicio.png" alt="">
+  <h1 (click)="home()">MUNDO PELIS</h1>
+<div class="header-container">
+  <div class="linea-solitaria"></div>
+  <div class="header-content">
+    <div class="selectors">
+      <button type="button" id="btnInicio" (click)="home()" >Inicio</button>
+      <select id="Order" [(ngModel)]="orderBy" (change)="orderMovies()">
+        <option [ngValue]="''" [hidden]="selectedMovie !== null" disabled selected hidden *ngIf="selectedMovie === null">Ordenar</option>
+        <option [ngValue]="'asc'">Ascendente</option>
+        <option [ngValue]="'desc'">Descendente</option>
+        <option [ngValue]="'votosAsc'">Voto Ascendente</option>
+        <option [ngValue]="'votosDesc'">Voto Descendente</option>
+      </select>
+      <select id="genero" [(ngModel)]="selectedGenre" (change)="movieGenero()">
+        <option [ngValue]="null" [hidden]="selectedMovie !== null" disabled selected hidden *ngIf="selectedMovie === null">Género</option>
+        <option [ngValue]="'28'">Acción</option>
+        <option [ngValue]="'12'">Aventura</option>
+        <option [ngValue]="'16'">Animación</option>
+        <option [ngValue]="'35'">Comedia</option>
+        <option [ngValue]="'80'">Crimen</option>
+        <option [ngValue]="'18'">Drama</option>
+        <option [ngValue]="'10751'">Familia</option>
+        <option [ngValue]="'27'">Terror</option>
+        <option [ngValue]="'9648'">Misterio</option>
+        <option [ngValue]="'10749'">Romance</option>
+        <option [ngValue]="'878'">Ciencia ficción</option>
+        <option [ngValue]="'53'">Suspenso</option>
+      </select>
+      <select id="populares" [(ngModel)]="selectedPopularity" (change)="moviePopularity()">
+        <option [ngValue]="''" [hidden]="selectedMovie !== null" disabled selected hidden *ngIf="selectedMovie === null">Popularidad</option>
+        <option [ngValue]="'populares'">Populares</option>
+        <option [ngValue]="'top10'">Top 10</option>
+      </select>
+    </div>
+  </div>
+  <div class="input-container" [ngClass]="{ 'hide-search': selectedMovie !== null }" *ngIf="selectedMovie === null">
+    <i class="fas fa-search search-icon" (click)="toggleSearchContainer()"></i>
+    <div class="searchContainer" *ngIf="showSearchContainer">
+      <input type="text" name="movieTitle" class="form-control" autofocus placeholder="Buscar Película..." [(ngModel)]="movieTitle" (input)="buscarPeliculas()">
+    </div>
+  </div>
+</div>
+
+  <div class="container" *ngIf="selectedMovie === null">
+    <div class="row">
+      <div *ngFor="let movie of filteredMovies | orderBy: orderBy; let i = index" class="col-xs-12 col-sm-4 col-md-3">        <div class="movieCard" (click)="movieIndex(i)" [class.active]="selectedMovie === i">
+          <img [src]="'https://image.tmdb.org/t/p/w500' + movie.poster_path" alt="Portada de la película" class="img-fluid movie-poster">
+          <p id="title" [hidden]="selectedMovie !== i">{{ movie.title }}</p>
+          <p id="title">{{ movie.title }}
+            <br>
+            <strong><i class="fas fa-star"></i> {{ movie.vote_average }} &nbsp;|&nbsp; {{ getGenreName(movie.genre_ids[0]) }}</strong>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section class="movieDetail" *ngIf="selectedMovie !== null">
+    <div class="movieContent">
+      <div class="imgPortada"><img [src]="moviePoster" alt="Portada de película" *ngIf="selectedMovie !== null" class="imgPortada img-fluid selected-movie-poster"></div>
+      <div class="movieInfo">
+        <div class="title">{{ selectedMovie !== null ? filteredMovies[selectedMovie]?.title : '' }}</div>
+        <div class="votos"> <strong>&nbsp;&nbsp;<i class="fas fa-star star-icon"></i>&nbsp;&nbsp;{{ selectedMovie !== null ? filteredMovies[selectedMovie]?.vote_average : '' }}</strong>
+          <br>
+          {{ selectedMovie !== null ? filteredMovies[selectedMovie]?.vote_count : '' }} votos
+        </div>
+        <div class="genero">
+          <p>
+            <strong>Género: </strong>{{ selectedMovie !== null ? getGenreName(filteredMovies[selectedMovie]?.genre_ids[0]) : '' }}
+            <br>
+            <strong>Estreno: </strong>{{ selectedMovie !== null ? filteredMovies[selectedMovie]?.release_date : '' }}
+            <br>
+            <strong>Título original: </strong>{{ selectedMovie !== null ? filteredMovies[selectedMovie]?.original_title : '' }}
+            <br>
+            <strong>Idioma original: </strong>{{ selectedMovie !== null ? filteredMovies[selectedMovie]?.original_language : '' }}
+          </p>
+        </div>
+        <div class="sinopsis"><strong>Sinopsis: </strong>{{ selectedMovie !== null ? filteredMovies[selectedMovie]?.overview : '' }}</div>
+      </div>
+    </div>
+  </section>
+</body>
