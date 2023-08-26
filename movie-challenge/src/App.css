@@ -1,10 +1,12 @@
+/*
 #root {
   max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
 }
-
+*/
+/*
 .logo {
   height: 6em;
   padding: 1.5em;
@@ -39,4 +41,27 @@
 
 .read-the-docs {
   color: #888;
+}
+*/
+/*
+.homepage {
+  background-color: aqua;
+}
+*/
+.leftHeader {
+  width: 30%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding-left: 1rem;
+}
+.headerMovie {
+  display: flex;
+  flex-direction: row;
+  margin-top: 1%;
+  background-color: #0d0911;
+}
+.loguito {
+  width: 50%;
 }
