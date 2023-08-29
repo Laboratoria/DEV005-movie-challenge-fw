@@ -1,6 +1,7 @@
 import "./App.css";
 import logo from "./assets/logotipo1.png";
-import { MoviesGrid } from "./moviesGrid";
+import { MoviesGrid } from "./components/moviesGrid";
+
 export function App() {
   return (
     <div className="homepage">
