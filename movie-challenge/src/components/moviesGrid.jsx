@@ -4,7 +4,6 @@ import styles from "./moviesGrid.module.css";
 import { useState } from "react";
 //import movies from "./movies.json";
 export function MoviesGrid() {
-  //let movies = [];
   const [movies, setMovies] = useState([]);
   useEffect(() => {
     fetch("https://api.themoviedb.org/3/discover/movie", {
@@ -20,6 +19,7 @@ export function MoviesGrid() {
       })
       .catch(console.error);
   }, []);
+
   return (
     <ul className={styles.movieCardGrid}>
       {movies.map((movie) => (
