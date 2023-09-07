@@ -1,13 +1,18 @@
 import "./App.css";
 import logo from "./assets/logotipo1.png";
 //import { MoviesGrid } from "./components/moviesGrid";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
 import { MovieDetails } from "./pages/movieDetails";
 import { LandingPage } from "./pages/landingPage";
 
 export function App() {
   return (
-    <div className="homepage">
+    <Router className="homepage">
       <header>
         <div className="headerMovie">
           <div className="leftHeader">
@@ -16,14 +21,13 @@ export function App() {
         </div>
       </header>
       <main>
-        <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<LandingPage />} />
-            <Route path="/movies/:movieId" element={<MovieDetails />} />
-          </Routes>
-        </BrowserRouter>
+        <Routes>
+          <Route path="/" element={<LandingPage />} />
+          <Route path="/movies/:movieId" element={<MovieDetails />} />
+          <Route path="*" element={<Navigate replace to="/" />} />
+        </Routes>
       </main>
-    </div>
+    </Router>
   );
 }
 
