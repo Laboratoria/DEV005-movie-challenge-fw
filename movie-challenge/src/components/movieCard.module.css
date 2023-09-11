@@ -4,7 +4,7 @@
   text-align: center;
 }
 .movieTitle:hover {
-  opacity: 0.8;
+  opacity: 0.5;
 }
 .movieImage {
   border-radius: 15px;
