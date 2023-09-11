@@ -6,9 +6,12 @@ import {
   Routes,
   Route,
   Navigate,
+  Link,
 } from "react-router-dom";
 import { MovieDetails } from "./pages/movieDetails";
 import { LandingPage } from "./pages/landingPage";
+import styles from "./App.module.css";
+import { Search } from "./components/search";
 
 export function App() {
   return (
@@ -17,6 +20,16 @@ export function App() {
         <div className="headerMovie">
           <div className="leftHeader">
             <img src={logo} alt={"logo"} className="loguito" />
+          </div>
+          <div className="rightHeader">
+            <div>
+              <Search />
+            </div>
+            <div className="rightInicio">
+              <Link to="/">
+                <h1 className={styles.inicio}>Inicio</h1>
+              </Link>
+            </div>
           </div>
         </div>
       </header>

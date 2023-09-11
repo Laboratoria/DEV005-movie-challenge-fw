@@ -1,0 +1,30 @@
+.searchContainer {
+  display: flex;
+  padding-left: 500px;
+}
+
+.searchBox {
+  position: relative; /*para posicionar los demas elementos con respecto de este elemento*/
+}
+.searchButton {
+  position: absolute;
+  right: 0; /*para qu este oegado a la dercha de la caja*/
+  top: 0; /*para que este al tope de la caja*/
+  cursor: pointer;
+  height: 100%;
+  border: none;
+  background: none;
+}
+.searchImput {
+  font-size: 1.2rem;
+  height: 30px;
+  border-radius: 10px;
+  padding: 5px 30px 5px 10px; /*para que el texto no sobrepase al icono de la lupa*/
+  border: 1px solid white;
+}
+.searchImput:focus,
+.searchButton:focus {
+  outline: none;
+  border: 2px solid #f88ec2;
+  box-shadow: 0 0 5px #ebbed4;
+}
